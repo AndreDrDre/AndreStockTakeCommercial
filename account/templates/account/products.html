@@ -1,0 +1,43 @@
+{%extends 'base.html'%}
+{% block content %}
+
+
+<div class="container-fluid">
+    <div class = "row">
+        <div class = "col-md-12">
+            <div class= 'card card-body'>
+                <form method="get">
+                    {{filter.form}}
+                <button class="btn btn-primary" type="submit">Search</button>
+              </form>
+            </div>
+            <br>
+        
+            <div class= 'card card-body'>
+                <table class="table">
+                   
+                   
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Price ZAR</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                        
+                    </tr>
+
+                    {% for i in products%}
+                       <tr>
+                           <td>{{i.name}}</td>
+                           <td>{{i.category}}</td>
+                           <td>{{i.price}}</td>
+                           <td><a class="btn btn-sm btn-info" href="#" >Update</a></td>
+                           <td><a class="btn btn-sm btn-danger" href="#" >Delete</a></td>
+                       </tr>
+             
+                    {% endfor%}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock%}

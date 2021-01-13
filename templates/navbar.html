@@ -1,0 +1,38 @@
+
+{%load static%}
+
+<style>
+  .log-msg {
+    fontsize: 18px;
+    color: #ffff;
+    margin-right: 20px
+  }
+  
+</style>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">
+        <img src="{%static 'media/NAF1.png'%}" width="200" height="60" class="d-inline-block align-top" alt="">
+       
+      </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        {% if request.user.is_staff%}
+        <a class="nav-item nav-link active" href="{%url 'home' %}">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="{%url 'products' %}">Products</a>
+        <a class="nav-item nav-link" href="#">Store</a>
+        {% else %}
+        <a class="nav-item nav-link" href="{% url 'account' %}">User Settings</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <span class="log-msg">
+      Hello, {{request.user}}
+    </span>
+    <span >
+      <a class="log-msg" href="{%url 'logout' %}">Logout</a>
+    </span>
+  </nav>

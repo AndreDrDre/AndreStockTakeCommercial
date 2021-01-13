@@ -1,0 +1,82 @@
+{%extends 'base.html'%}
+{% block content %}
+{%include 'status.html'%}
+<!--https://getbootstrap.com/docs/4.4/layout/grid/ -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <!--Specificy we want to take up 5/12 content blocks-->
+            <div class="mx-auto" style="width: 400px;">
+                <h5>CUSTOMER INFORMATION</h5>
+            </div>
+
+            <hr>
+            <div class="card card-body">
+                <a class="btn btn-success btn-sm btn-block" href="">Create new Customer</a>
+                <table class="table table-md">
+                    <tr>
+
+                        <th>Customer</th>
+                        <th>Orders</th>
+                    </tr>
+
+                    {% for customer in customers%}
+                    <tr>
+                        <td>{{customer.name}}</td>
+                        <td>{{customer.phone}}</td>
+                        <th><a class="btn btn-sm btn-success" href="{% url 'customer' customer.id%}">View</a></th>
+                    </tr>
+                    {% endfor%}
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <!--Specificy we want to take up 7/12 content blocks-->
+            <div class="mx-auto" style="width: 400px;">
+                <h5>5 RECENT ORDERS</h5>
+            </div>
+            <hr>
+            <div class="card card-body">
+
+                <table class="table table-md">
+                    <tr>
+                        <th>Product</th>
+                        <th>Date Ordered</th>
+                        <th>Status</th>
+                        <th>Update</th>
+                        <th>Remove</th>
+                    </tr>
+                    {% for order in orders%}
+                    <tr>
+                        <td>{{order.product}}</td>
+                        <td>{{order.date_created}}</td>
+                        <td>{{order.status}}</td>
+                        <td><a class="btn btn-sm btn-info" href="{%url 'updateOrder' order.id%}">Update</a></td>
+                        <td><a class="btn btn-sm btn-danger" href="{%url 'deleteOrder' order.id%}">Delete</a></td>
+                    </tr>
+                    {% endfor%}
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+        <div class="col">
+            2 of 3
+        </div>
+        <div class="col">
+            3 of 3
+        </div>
+    </div>
+</div>
+
+{% endblock%}

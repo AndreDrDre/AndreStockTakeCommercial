@@ -1,0 +1,23 @@
+{%extends 'base.html'%}
+{% block content %}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card card-body">
+                <p>Are you certain you want to remove this item : {{item}}</p>
+                <form action = "{%url 'deleteOrder' item.id %}" method="POST">
+                    {% csrf_token %}
+                    <a class="btn btn-sm btn-warning" href="{%url 'home'%}" >Cancel</a>
+                    <input class="btn btn-sm btn-danger" type="submit" name= "Confrim">
+                </form>
+            </div>
+        </div>            
+    </div>
+</div>
+
+
+
+
+{% endblock %}

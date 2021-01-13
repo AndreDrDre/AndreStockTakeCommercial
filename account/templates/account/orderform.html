@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-body">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <h3>Customer : {{customer}} </h3>
+                    <hr>
+                    {{formset.management_form}}
+                    {%for form in formset%}
+                    {{form}}
+                    <hr>
+                    {% endfor %}
+                    <input class="btn btn-sm btn-success" type="submit" valuename="Submit">
+                </form>
+            </div>
+        </div>            
+    </div>
+</div>
+
+
+
+{% endblock%}
