@@ -15,21 +15,6 @@ from .forms import OrderForm, createUserForm, CustomerForm
 from .decorators import unauth_user, allowed_users, admin_only
 
 
-@login_required(login_url='login')
-@allowed_users(allowed_roles=['customer'])
-def userPage(request):
-    orders = request.user.customer.order_set.all()
-
-    total_orders = orders.count()
-
-    delivered = orders.filter(status='Delivered').count()
-    pending = orders.filter(status='Pending').count()
-    context = {'orders': orders,
-               'total_orders': total_orders,
-               'delivered': delivered, 'pending': pending}
-    return render(request, 'account/user.html', context)
-
-
 def logoutuser(request):
     logout(request)
     return redirect('login')
@@ -87,7 +72,6 @@ def home(request):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
 def products(request):
     product = Product.objects.all()
     myFilter_p = ProductFilter(request.GET, queryset=product)
@@ -98,7 +82,6 @@ def products(request):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
 def customer(request, pk):
 
     customer = Customer.objects.get(id=pk)
@@ -115,7 +98,6 @@ def customer(request, pk):
 
 
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['admin'])
 def createOrder(request, pk):
     orderFormSet = inlineformset_factory(
         Customer, Order, fields=('product', 'status'), extra=5)  # (Parent, Child) ; # make this dynamic
@@ -177,3 +159,33 @@ def account_settings(request):
 
     context = {'form': form}
     return render(request, 'account/user_account.html', context)
+
+
+@admin_only
+def createuser(request):
+    form = createUserForm()
+    if request.method == 'POST':
+        form = createUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(
+                request, 'Account has been created for ' + username)
+            return redirect('home')
+
+    context = {'form': form}
+    return render(request, 'account/register.html', context)
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['customer'])
+def userPage(request):
+    orders = request.user.customer.order_set.all()
+    total_orders = orders.count()
+
+    delivered = orders.filter(status='Delivered').count()
+    pending = orders.filter(status='Pending').count()
+    context = {'orders': orders,
+               'total_orders': total_orders,
+               'delivered': delivered, 'pending': pending}
+    return render(request, 'account/user.html', context)

@@ -24,7 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'wd^-bngoe6i#bwfh=qeowp&y7i!tw^1a%g#z20x!%rnj1y$!mk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+
+# Turn this on to render images and css in local Environment
+DEBUG = True
 
 ALLOWED_HOSTS = ['logisticstocktracker.herokuapp.com', '127.0.0.1']
 

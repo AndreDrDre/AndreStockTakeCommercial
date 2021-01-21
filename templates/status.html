@@ -1,22 +1,33 @@
+<head>
+    <style>
 
+        body {
+        background-color: #f1f0f0;
+        }
+	
+		#display {
+			background: #09d1f5;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			border-radius: 30px;
+        }
+        #total {
+			background: #0187f5;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			border-radius: 30px;
+        }
+
+		
+	</style>
 <br>
 <div class="container-fluid"> 
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-md-center">        
         <div class="col">
             <div class="col-md">
-                <div class="card text-center text-white mb-3" id="total-orders">
-                    <div class="card-header">
-                        <h5 class="card-title">Total Orders</h5>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">{{total_orders}}</h3>
-                    </div>
-                </div>
-            </div>
-        </div>          
-        <div class="col">
-            <div class="col-md">
-                <div class="card text-center text-white mb-3"  id="orders-delivered">
+                <div class="card text-center text-white mb-3"  id = "display">
                     <div class="card-header">
                         <h5 class="card-title">Orders Delivered</h5>
                     </div>
@@ -28,7 +39,7 @@
         </div>        
         <div class="col">
             <div class="col-md">
-                <div class="card text-center text-white mb-3"  id="orders-pending">
+                <div class="card text-center text-white mb-3"  id = "display">
                     <div class="card-header">
                         <h5 class="card-title">Orders Pending</h5>
                     </div>
@@ -38,5 +49,30 @@
                 </div>
             </div>
         </div>
+        <div class="col" >
+            <div class="col-md">
+                <div class="card text-center text-white mb-3" id = "total" >
+                    <div class="card-header">
+                        <h5 class="card-title">Total Orders</h5>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{total_orders}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        <div class="col">
+            <div class="col-md">
+                <div class="card text-center text-white mb-3"  id = "total">
+                    <div class="card-header">
+                        <h5 class="card-title">Total Amount</h5>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{pending}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
     </div>
  </div>

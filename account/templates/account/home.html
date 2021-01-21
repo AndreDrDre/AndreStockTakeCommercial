@@ -2,6 +2,31 @@
 {% block content %}
 {%include 'status.html'%}
 <!--https://getbootstrap.com/docs/4.4/layout/grid/ -->
+<head>
+    <style>
+
+        .card-body{
+            border-radius: 20px
+        }
+
+        .createbutton{
+            border-radius: 20px;
+            background-color: #0187f5;
+            color: white;
+            font-size: 18px;
+        }
+
+        .viewbutton{
+            border-radius: 20px;
+            background-color: #3d717e;
+            color: white;
+            font-size: 14px;
+            width: 70px;
+        }
+
+
+    </style>
+</head>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 
@@ -14,20 +39,22 @@
             </div>
 
             <hr>
-            <div class="card card-body">
-                <a class="btn btn-success btn-sm btn-block" href="">Create new Customer</a>
+            <div class="card card-body" >
+                <a class="btn btn-sm btn-block createbutton" href="{% url 'createuser' %}">Create new Customer</a>
+                <br>
                 <table class="table table-md">
                     <tr>
-
+                        
                         <th>Customer</th>
-                        <th>Orders</th>
+                        <th>Email</th>
+                        <th>Details</th>
                     </tr>
 
                     {% for customer in customers%}
                     <tr>
                         <td>{{customer.name}}</td>
-                        <td>{{customer.phone}}</td>
-                        <th><a class="btn btn-sm btn-success" href="{% url 'customer' customer.id%}">View</a></th>
+                        <td>{{customer.email}}</td>
+                        <th><a class="btn btn-sm viewbutton" href="{% url 'customer' customer.id%}">View</a></th>
                     </tr>
                     {% endfor%}
                 </table>
@@ -37,7 +64,7 @@
         <div class="col-md-7">
             <!--Specificy we want to take up 7/12 content blocks-->
             <div class="mx-auto" style="width: 400px;">
-                <h5>5 RECENT ORDERS</h5>
+                <h5>RECENT ORDERS</h5>
             </div>
             <hr>
             <div class="card card-body">
@@ -66,17 +93,7 @@
     </div>
     <br>
     <hr>
-    <div class="row">
-        <div class="col-md-6">
-            <canvas id="myChart" width="400" height="400"></canvas>
-        </div>
-        <div class="col">
-            2 of 3
-        </div>
-        <div class="col">
-            3 of 3
-        </div>
-    </div>
+    
 </div>
 
 {% endblock%}

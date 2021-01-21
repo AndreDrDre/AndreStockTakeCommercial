@@ -35,9 +35,7 @@ class Product(models.Model):
                 )
 
     name = models.CharField(max_length=200, null=True)
-
-    price = MoneyField(decimal_places=2, default=0,
-                       default_currency='ZAR', max_digits=11, null=True)
+    price = models.FloatField(null=True)
     category = models.CharField(max_length=200, null=True, choices=CATAGORY)
     description = models.CharField(max_length=200, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
